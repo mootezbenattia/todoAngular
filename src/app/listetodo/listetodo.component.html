@@ -1,0 +1,87 @@
+<app-nav></app-nav>
+
+<div class="container">
+  <button type="button" [routerLink]="['/addtolist']" class="btn btn-primary">Ajouter</button>
+
+  <div *ngIf="todos.length > 0;then todoss else notodos"></div>
+  <div *ngIf="dones.length > 0;then doness else nodones"></div>
+  
+  
+  <ng-template #todoss>
+    <table class="table table-sm table-striped ">
+      <p class=" h3" [textContent]="todo"></p>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Date Ajout</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos; let i=index">
+          <td>{{todo.descr | uppercase}}</td>
+          <td>{{todo.dta | date: 'shortDate'}}</td>
+          <td><button class="btn btn-danger btn-sm" (click)="openModal(template,i)">Delete</button><button
+              class="btn btn-warning btn-sm" [routerLink]="['/update']">Update</button>
+            <button class="btn btn-primary btn-sm" (click)="adddata(i,todos)">Done</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </ng-template>
+  
+  <ng-template #notodos>
+    <div class="alert alert-danger">No todos yet</div>
+  </ng-template>
+  
+  <ng-template #doness>
+    <hr>
+    <p class="h3" [textContent]="done"></p>
+    <table class="table table-sm table-striped ">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Date Ajout</th>
+          <th>Date Fin</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let done of dones; let i=index">
+          <td>{{done.descr | uppercase}}</td>
+          <td>{{done.dta | date: 'shortDate'}}</td>
+          <td>{{done.dtf | date: 'shortDate'}}</td>
+          <td><button class="btn btn-danger" (click)="openModals(templates,i)">Delete</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  
+  <ng-template #nodones>
+    <div class="alert alert-danger">No dones yet</div>
+  </ng-template>
+
+  <ng-template #template>
+    <div class="modal-body text-center dv">
+      <p id="wh">Do you want to confirm?</p>
+      <button type="button" class="btn btn-danger" (click)="delete()">Yes</button>
+      <button type="button" class="btn btn-danger" (click)="decline()">No</button>
+    </div>
+  </ng-template>
+
+  <ng-template #templates>
+    <div class="modal-body text-center dv">
+      <p>Do you finish your todo?</p>
+      <button type="button" class="btn btn-danger" (click)="deletes()">Yes</button>
+      <button type="button" class="btn btn-danger" (click)="declines()">No</button>
+    </div>
+  </ng-template>
+
+
+</div>
+<app-footer></app-footer>

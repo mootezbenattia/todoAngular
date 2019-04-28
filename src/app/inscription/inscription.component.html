@@ -1,0 +1,125 @@
+<app-nav></app-nav>
+<form [formGroup]="inscriptionform" (ngSubmit)="inscription()">
+    <div class="container">
+        <div class="row">
+            Nom:
+    
+          <div class="col">
+              
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="First name"
+            formControlName="FirstName">
+            <div *ngIf="FirstName.touched && FirstName.invalid" class="alert alert-danger">
+              <div *ngIf="FirstName.errors.required">
+                le nom est obligatoire
+
+              </div>
+              <div *ngIf="FirstName.errors.minlength">
+                  le nom doit comporter au min {{ FirstName.errors.minlength.requiredLength}} caractéres
+              </div>
+              <div *ngIf="FirstName.errors.maxlength">
+                le nom doit comporter au max {{ FirstName.errors.maxlength.requiredLength}} caractéres
+              </div>
+              <div *ngIf="FirstName.errors.pattern">
+                le nom ne doit contenir que  des alphabets
+              </div>
+            </div>
+
+
+           
+          </div>
+          Prenom:
+          <div class="col">
+            <input type="text" 
+            class="form-control" 
+            placeholder="Last name"
+            formControlName="LastName">
+            <div *ngIf="LastName.touched && LastName.invalid" class="alert alert-danger">
+              <div *ngIf="LastName.errors.required">
+                le prénom est obligatoire
+
+              </div>
+              <div *ngIf="LastName.errors.minlength">
+                  le prénom doit comporter au min {{ LastName.errors.minlength.requiredLength}} caractéres
+              </div>
+              <div *ngIf="LastName.errors.maxlength">
+                le prénom doit comporter au max {{ LastName.errors.maxlength.requiredLength}} caractéres
+              </div>
+              <div *ngIf="LastName.errors.pattern">
+                le prénom ne doit contenir que  des alphabets
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+                Email
+        
+              <div class="col">
+                  
+                <input 
+                type="email" 
+                class="form-control" 
+                placeholder="Email"
+                formControlName="email">
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+              <div *ngIf="email.errors.required">
+                l'email est obligatoire
+
+              </div>
+             
+              
+              <div *ngIf="email.errors.email">
+               email doit contenir @
+
+              </div>
+              </div>
+            </div>
+              Tel:
+              <div class="col">
+                <input 
+                type="tel" 
+                class="form-control" 
+                placeholder="entrer votre nom svp"
+                formControlName="tel">
+                <div *ngIf="tel.touched && tel.invalid" class="alert alert-danger">
+                  <div *ngIf="tel.errors.pattern">
+                    le numero est invalide
+                  </div>
+              </div>
+            </div>
+        </div>
+            <div class="row">
+                    Mot de passe:
+            
+                  <div class="col">
+                      
+                    <input 
+                        type="password"   
+                        class="form-control" 
+                        placeholder="password please"
+                        formControlName="password"
+                        >
+                        
+                    <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+                      <div *ngIf="password.errors.required">
+                        le mot de passe est obligatoire
+
+                      </div>
+                      <div *ngIf="password.errors.minlength">
+                          le mot de passe doit comporter au min {{ password.errors.minlength.requiredLength}} caractéres
+                      </div>
+                    </div>
+                  </div>
+                    Répéter Mot De Passe:
+                  <div class="col">
+                    <input type="password" class="form-control" placeholder="Repeat">
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-primary" [disabled]="inscriptionform.invalid" value="inscription"/>
+   </div>
+</form>
+  
+<app-footer></app-footer>

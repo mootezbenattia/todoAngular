@@ -1,0 +1,39 @@
+<app-nav></app-nav>
+<div class="container">
+  <div *ngIf="courses.length>0;then coursesList else nocourses"></div>
+  <ng-template #coursesList><table class="table table-sm table-striped ">
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>students</th>
+          <th>rating</th>
+          <th>price</th>
+          <th>release date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses; let i=index">
+          <td>{{course.title | uppercase}}</td>
+          <td>{{course.student | number}}</td>
+          <td>{{course.rating | number:'2.1-1'}}</td>
+          <td>{{course.price | currency:'USD'}}</td>
+          <td>{{course.releasedate | date:'shortDate'}}</td>
+          <td><input type="button" value="effacer" class="btn btn-danger" (click)="openModal(template,i)"></td>
+        </tr>
+      </tbody>
+    </table>
+      </ng-template>
+  <ng-template #nocourses>  <div class="alert alert-danger">No courses yet</div>
+  </ng-template>
+
+  
+     
+  <ng-template #template>
+      <div class="modal-body text-center">
+        <p>Do you want to confirm?</p>
+        <button type="button" class="btn btn-default" (click)="delete()" >Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+      </div>
+    </ng-template>
+</div>
+<app-footer></app-footer>

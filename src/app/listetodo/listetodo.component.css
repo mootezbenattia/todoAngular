@@ -1,0 +1,11 @@
+@import '~ngx-toastr/toastr.css';
+
+.h3{
+    text-align:center;
+}
+.dv{
+background-color:rgba(0, 0, 0, 0.4);
+}
+#wh{
+    color:white;
+}
